@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="catalog">
+   <h1>Import EWAS results</h1>
+      <p>&nbsp;</p>
+      <form action="" enctype="multipart/form-data" method="post" autocomplete="off">
+         <!--<table>
+            {{ form.as_table }}
+         </table>{% csrf_token %}-->
+         <input type="file" id="file" name="file">{% csrf_token %}
+         <p>&nbsp;</p> 
+         <input type="submit" value="Submit">
+      </form>
+</div>
+
+<script>
+var uploadField = document.getElementById("file");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 20000000){
+       alert("The file uploaded is too large");
+       this.value = "";
+    };
+};
+</script>
+
+
+{% endblock %}
+

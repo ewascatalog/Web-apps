@@ -1,0 +1,69 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="information">
+   <h1>Information</h1>
+   <p class="small">&nbsp;</p> 
+   <p>Before inputting any data into the database, please read all of the instructions below carefully. The data entry system is split into four sections: study information, analysis information, participants information and results. Each of these pages has a submit button at the bottom of the page. Please ensure that you enter data as correctly as possible before clicking submit. If the information for any of the fields is not available please leave the field blank - you will be prompted if a field is compulsary.</p>
+   <p class="small">&nbsp;</p> 
+   <h2>Study information</h2>      
+   <p>This section will request the following pieces of information:</p>
+   <ul>
+      <li>First Author - the first author of the publication entered as surname then initials (e.g. Staley JR).</li>
+      <li>Consortium - the name of the consortium if any (e.g. PACE).</li>
+      <li>PubMedID - the PubMedID (or DOI) of the publication.</li>
+      <li>Publication Date - the date the paper was published entered as DD/MM/YY (e.g. 31/03/17).</li>
+      <li>Trait - the name of the trait studied in full (e.g. Body mass index not BMI).</li>
+      <li>EFO term - the corresponding <a href="http://www.ebi.ac.uk/efo/">ontology term(s)</a> for the trait. Please use the closest term(s) separated by commas. </li>
+      <li>Analysis - description of the analysis performed (e.g. Discovery and replication, European ancestry, etc.).</li>
+      <li>Source - the table where the result can be found in the paper (e.g. Table 1, Table S1, etc.).</li>
+   </ul>
+   <p class="small">&nbsp;</p> 
+   <h2>Analysis information</h2>      
+   <p>This section will request the following pieces of information:</p>
+   <ul>
+      <li>Outcome - the outcome of the analysis (e.g. DNA methylation).</li>
+      <li>Exposure - the exposure of the analysis (e.g. Body mass index).</li>
+      <li>Covariates - the potential confounders adjusted for in the analysis (e.g. Age, sex and smoking).</li>
+      <li>Outcome Units - the units of the outcome (e.g. Beta values).</li>
+      <li>Exposure Units - the units of the exposure (e.g. kg/m2).</li>
+      <li>Methylation Array - the array used to measure the methylation (e.g. Illumina HumanMethylation450).</li>
+      <li>Tissue - the tissue in which the methylation was measured.</li>
+      <li>Further Details - any other relevant details (e.g. Weighted Z-test meta-analysis).</li>
+   </ul>
+   <p class="small">&nbsp;</p> 
+   <h2>Participants information</h2>      
+   <p>This section will request the following pieces of information:</p>
+   <ul>
+      <li>Total Number of Participants - the maximum number of participants used in the analysis.</li>
+      <li>Total Number of Cohorts - the maximum number of cohorts used in the analysis.</li>
+      <li>Categories - the number of individuals in each category separated by a comma (e.g. 200 smokers, 100 ex-smokers, 150 never smokers).</li>
+      <li>Age - mean age of the individuals in years.</li>
+      <li>Total Number of Males - the maximum number of males used in the analysis.</li>
+      <li>Total Number of Females - the maximum number of females used in the analysis.</li>
+      <li>Total Number of Europeans - the total number of European participants.</li>
+      <li>Total Number of East Asians - the total number of East Asian participants (e.g. Chinese and Japanese).</li>
+      <li>Total Number of South Asians - the total number of South Asian participants (e.g. Indian and Pakistani).</li>
+      <li>Total Number of Africans - the total number of African participants.</li>
+      <li>Total Number of Admixed Americans - the total number of Admixed American participants (e.g. South American and Native American).</li>
+      <li>Total Number of Other Ancestry - the total number of individuals of non-EUR, non-SAS, non-EAS, non-AFR or non-AMR ancestry.</li>
+   </ul>
+   <p class="small">&nbsp;</p> 
+   <h2>Results</h2>      
+   <p>This section will request the following pieces of information:</p>
+   <ul>
+      <li>CpG - the name of the CpG site (e.g. cg111).</li>
+      <li>Beta - the effect estimate.</li>
+      <li>Standard Error - the standard error of the effect estimate.</li>
+      <li>P-value - the maximum number of males used in the analysis.</li>
+      <li>I2 - the I2 statistic from the meta-analysis.</li>
+      <li>P-value of Heterogeneity - the p-value of heterogeneity from the meta-analysis.</li>
+      <li>Details - any additional information on the analysis (e.g. for EWAS of high-dimensional phenotypes [e.g. metabolites] on the same participants this is where the sub-trait should be specified).</li>
+   </ul>
+   <p>CpG results can be entered one at a time by entering the results for each CpG in turn and clicking the submit button. When all of the CpG results have been entered click the finish button. Please submit all of the results before clicking the finish button. CpG results can also be uploaded as CSV, TSV or TXT files. Note the columns of these files have to be in the same order as above with the following column headers: cpg, beta, se, p, i2, p_het, details. </p>
+   <p class="small">&nbsp;</p> 
+   <a href="{% url 'catalog_study' %}" style="font-size : 15pt" class="btn btn-default">Input New EWAS</a>
+</div>
+
+{% endblock %}

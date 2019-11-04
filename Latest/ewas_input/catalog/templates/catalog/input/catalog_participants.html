@@ -1,0 +1,35 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="catalog">
+   <h1>Participant information</h1>
+   <p>&nbsp;</p>
+   <form id="Participants" method="POST" class="catalog-form" autocomplete="off">{% csrf_token %}
+      {% for field in form %}
+         <div>
+            {{ field.label_tag }} 
+            <p> {{ field }} </p>
+         </div>
+      {% endfor %}
+   <button type="submit">Submit</button>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+       
+   $(window).on("beforeunload", function() {
+       return "Are you sure? You didn't finish the form!";
+   });
+        
+   $(document).ready(function() {
+      $("#Participants").on("submit", function(e) {
+         $(window).off("beforeunload");
+         return true;
+      });
+   });
+
+</script>
+
+{% endblock %}
+

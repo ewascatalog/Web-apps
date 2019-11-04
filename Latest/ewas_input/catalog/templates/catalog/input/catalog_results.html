@@ -1,0 +1,28 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div id="Results" class="catalog">
+   <h1>Results</h1>
+   <p>&nbsp;</p>
+   <form method="POST" class="catalog-form" autocomplete="off">{% csrf_token %}
+      {% for field in form %}
+         <div>
+            {{ field.label_tag }} 
+            <p> {{ field }} </p>
+         </div>
+      {% endfor %}
+   <p> 
+      <button type="submit">Submit</button>
+      &nbsp; 
+      <button onclick="window.location.href='{% url 'catalog_info' %}'">Finish</button>
+      &nbsp; 
+      &nbsp; 
+      <!--<button onclick="window.location.href='./import'">Upload</button>-->
+      <!--<a href="./import" class="btn btn-default">Upload</a>--> 
+      <a href="./import"><span class="glyphicon glyphicon-file"></span> Upload</a>
+   </p>
+</div>
+
+{% endblock %}
+

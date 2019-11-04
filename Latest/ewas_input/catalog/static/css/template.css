@@ -1,0 +1,195 @@
+@import "base";
+@import "imports/modules/forms";
+
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: Helvetica;
+}
+
+.page-header {
+    background-color: #bf2f38;
+    margin-top: 0;
+    padding: 20px 20px 20px 60px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 50pt;
+    text-decoration: none;
+    font-family: Helvetica;
+}
+
+.nav {
+    font-size: 13pt;
+}
+
+.container {
+    width: 70%;
+}
+
+.content {
+    height: auto;
+    position: relative;
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size: 15pt;
+    margin-bottom: 100px;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-family: cursive;
+    font-weight: bold;
+    font-family: Helvetica;
+}
+
+h2 {
+    font-family: cursive;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: Helvetica;
+}
+
+.information {
+    text-align: left;
+    font-size: 15pt;   
+    font-family: Helvetica; 
+}
+
+.login {
+    font-size: 13pt;    
+}
+
+.catalog {
+    font-size: 13pt;
+}
+
+.catalog-form {
+    width: 100%;
+    font-size: 13pt;
+}
+
+.catalog-form textarea, .catalog-form input {
+    width: 70%;
+    font-size: 13pt;
+    border-radius: 5px;
+    background: #f9f9f9;
+    height: 35px;
+    padding-left: 10px;
+    border: 1.25px solid #999999;
+}
+
+
+.save {
+    float: left;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 0px;
+}
+
+.page-wrap {
+    text-align: center;
+    width: 800px;
+    margin: 0 auto;
+}
+
+body{
+    padding-top: 50px;
+    margin-bottom: 60px;
+    background-color: #ffffff;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    font-size: 10.5pt;
+    background-color: #efefef;
+    text-align: center;
+}
+
+tr.space > td
+{
+    padding-bottom: 1em;
+}
+
+p.small {
+    line-height: 50%;
+}
+
+.searchform div {
+    height: 35px;
+    width: 80%;
+}
+
+.searchboxwrapper {
+    position: relative;
+}
+
+.searchbox {
+    width: 100%;
+    font-size: 13pt;
+    height: 35px;
+    background: #f9f9f9;
+    color: #000;
+    padding-left: 10px;
+    border: 1.25px solid #999999;
+    outline: none;
+    border-radius: 5px;
+}
+
+.searchsubmit {
+    font-family: 'FontAwesome';
+    width: 35px;
+    height: 35px;
+    border: 1px solid #bf2f38;
+    font-size: 15px;
+    color: #ffffff;
+    background: #bf2f38;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 5px;
+}
+
+select {
+    background-color: #ffffff;
+    border: thin solid black;
+    border-radius: 5px;
+    font-size: 12pt;
+    display: inline-block;
+    margin: 0;
+    padding: 0 5 0 0;  
+    height: 35px;
+    padding-left: 5px;    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select.minimal {
+  background-image:
+    url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png");
+  background-position:
+    calc(100% - 10px),
+    calc(100% - 5px),
+    calc(100% - 2.5em) 5em;
+  background-size:
+    8px 8px,
+    8px 8px,
+    8px 5em;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width:1400px) {
+  .container{
+    width: 90%;
+  }
+}

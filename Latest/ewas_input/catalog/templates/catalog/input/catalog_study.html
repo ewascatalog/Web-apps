@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+   
+<div class="catalog">
+   <h1>Study information</h1>
+   <p>&nbsp;</p>
+   <form method="POST" class="catalog-form" autocomplete="off">{% csrf_token %}
+      {% for field in form %}
+         <div>
+            {{ field.label_tag }} 
+            <p> {{ field }} </p>
+         </div>
+      {% endfor %}
+   <button type="submit">Submit</button>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,83 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+      <title>MRC-IEU EWAS Catalog Input</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'css/template.css' %}">
+      <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+   </head>
+   <body>
+      <div>
+         <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+            <div id="beta-icon" style="display: none">
+                <img src="{% static 'images/logo1.png' %}" width="35px" height="auto"/>
+            </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="{% url 'catalog_home' %}"><p><img src="{% static 'images/logo1.png' %}" width="30px" height="auto"/> EWAS Catalog Input</p></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                   <ul class="nav navbar-nav">
+                       <li class="active"><a href="{% url 'catalog_home' %}">Home</a></li>
+                       <li><a href="{% url 'catalog_info' %}">Information</a></li>
+                       {% if user.is_anonymous %}
+                       {% else %}
+                       <li><a href="{% url 'catalog_study' %}">Input</a></li>
+                       {% endif %}
+                       {% if user.is_anonymous %}
+                       <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                       {% else %}
+                       <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                       {% endif %}
+                   </ul>
+                   <ul class="nav navbar-nav navbar-right"> 
+                      </li><a class="navbar-brand"><img src="{% static 'images/bristol.png' %}" width="80px" height="auto"/></a></li>
+                      </li><a class="navbar-brand"><img src="{% static 'images/ieu_nav.png' %}" width="75px" height="auto"/></a></li>
+                   </ul>
+                </div>
+            </div>
+         </nav>
+      </div>
+      <div class="page-header">
+      <div class="container">
+         <h1> 
+            <img src="{% static 'images/logo2.png' %}" style="float: left;"</img>
+            <p class="information"> &nbsp;</p>
+            <a href="/">  EWAS Catalog Input</a>
+            <p class="h2">  The MRC-IEU catalog of epigenome-wide association studies</p>
+         </h1>
+      </div>
+      </div>
+      <div class="container">
+      <div class="content">
+         <div class="row">
+               {% block content %}
+               {% endblock %}
+         </div>
+      </div>
+      </div>
+      <div class="footer">
+         <p>
+            <img src="{% static 'images/bristol_red.png' %}" width="100px" height="auto"/>
+            <img src="{% static 'images/ieu.png' %}" width="100px" height="auto"/>
+            Copyright © 2018 MRC-IEU University of Bristol. All rights reserved. 
+            <!--<img src="{% static 'images/owl1.png' %}" width="50px" height="auto"/>-->
+         </p>
+      </div>
+   </body>
+</html>

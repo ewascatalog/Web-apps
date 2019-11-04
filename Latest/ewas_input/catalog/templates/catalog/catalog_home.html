@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="information">
+   <h1>Welcome</h1>
+   <p class="small">&nbsp;</p>
+   <p>Welcome to the MRC-IEU EWAS Catalog data input website. This website has been designed to input published EWAS data into the database. Before inputting any data please ensure you have read all of the <a href="{% url 'catalog_info' %}">documentation</a> carefully. We have designed this system to make this process as easy as possible, but suggestions are always welcome.</p>
+   <p class="small">&nbsp;</p>
+   <p>Thank you in advance for inputting EWAS data. This catalog will only be as good as the quality of the data stored within it.</p>
+   <p class="small">&nbsp;</p>
+   <p>If you would like to request a username or have any suggestions, please contact: </p>
+   <p>Tom Battram</p>
+   <p>tb13101@bristol.ac.uk</p>
+   <p class="small">&nbsp;</p>
+   <a href="/information" style="font-size : 15pt" class="btn btn-default">Information</a>
+</div>
+
+{% endblock %}

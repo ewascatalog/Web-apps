@@ -1,0 +1,13 @@
+##################################################################
+# README: Process EWAS                                           #
+#                                                                #
+# James Staley                                                   #
+# University of Bristol                                          #
+# james.staley@bristol.ac.uk                                     #
+##################################################################
+
+# Export database
+export.sh - exports the databases into text files one for study information (studies.txt) and one for CpG results (results.txt). It first creates a folder in ./input/ with the date that export was perfomed. The studies.txt and results.txt can be found in this folder ready for processing with map.
+
+# Mapping file
+map.R - adds CpG annotation and performs some tidying in R. As R is not installed on the shark server, the files you will need are ./cpgs/cpg_annotation.txt and the studies.txt and results.txt files created by export.sh. This script creates an updated version of studies.txt and results.txt as well as the EWAS_Catalog_YY_MM_DD.txt.gz, which is the file users can download. Some directory changes might be necessary for the code to work.
