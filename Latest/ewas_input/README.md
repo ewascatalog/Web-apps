@@ -1,14 +1,11 @@
-# EWAS catalog web application
+# EWAS catalog web application *allowing data upload*
+
+Compared to the query-only version, this version supports user login
+and file upload.
 
 ## catalog
 Code for the EWAS catalog web application
 implemented using the Django framework.
-
-## datasets
-Creates data files for responding to user queries.
-The files are created by querying the mySQL database.
-
-*(not found in '../ewas')*
 
 ## ewas
 Configuration files.
@@ -16,15 +13,8 @@ Configuration files.
 ## mysql
 mySQL database referred to above (**datasets**).
 
-*(in '../ewas', the corresponding 
-folder contains scripts for creating this mySQL database)*
-
 ## nginx
 Docker and Django configuration files for the NGINX web server.
-
-## docker-compose.yml
-Docker service definitions for each container:
-web application, NGINX web server, mySQL database manager.
 
 ## Dockerfile
 Docker configuration file.
@@ -33,3 +23,13 @@ Docker configuration file.
 
 ## requirements.txt
 Input to **Dockerfile** listing software dependencies.
+
+__*The items below are not found in the query-only version of the web application.*__
+
+## datasets
+Creates data files for responding to user queries.
+The files are created by querying the mySQL database.
+
+## docker-compose.yml
+Docker service definitions for each container:
+web application, NGINX web server, mySQL database manager.
