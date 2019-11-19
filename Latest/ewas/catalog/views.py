@@ -5,8 +5,17 @@ import MySQLdb, re, os, glob, csv, time, datetime, sched, requests, string, tabi
 from math import log10, floor
 from decimal import Decimal
 from ratelimit.decorators import ratelimit
+from django.conf import settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def default_db_connection():
+    dbhost = settings.DATABASES['default']['HOST']
+    dbuser = settings.DATABASES['default']['USER']
+    dbpassword = settings.DATABASES['default']['PASSWORD']
+    dbname = settings.DATABASES['default']['NAME']
+    db = MySQLdb.connect(host=dbhost,user=dbuser,password=dbpassword,db=dbname)
+    return(db)
 
 def remove(directory):
     for file in os.listdir(directory):
@@ -115,12 +124,10 @@ def catalog_home(request):
     remove(BASE_DIR+"/catalog/static/tmp")
     query = request.GET.get("query", None)
     ts = str(time.time()).replace(".","")
-    mysql_account = freader(BASE_DIR+"/catalog/mysql.txt")
-    mysql_account = [x for y in mysql_account for x in y]
     fields = ['Author', 'Consortium', 'PMID', 'Date', 'Trait', 'EFO', 'Analysis', 'Source', 'Outcome', 'Exposure', 'Covariates', 'Outcome_Unit', 'Exposure_Unit', 'Array', 'Tissue', 'Further_Details', 'N', 'N_Studies', 'Categories', 'Age', 'N_Males', 'N_Females', 'N_EUR', 'N_EAS', 'N_SAS', 'N_AFR', 'N_AMR', 'N_OTH', 'CpG', 'Location', 'Chr', 'Pos', 'Gene', 'Type', 'Beta', 'SE', 'P', 'Details']
     if query:
         query = query.strip()
-        db = MySQLdb.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+        db = default_db_connection()
         cur = db.cursor()      
         if re.match("^cg[0-9]+", query):
             cur.execute("SELECT studies.*,results.* FROM results JOIN studies ON results.study_id=studies.study_id WHERE cpg='"+query+"'")
@@ -260,11 +267,9 @@ def catalog_api(request):
     genequery = request.GET.get("genequery", None)
     regionquery = request.GET.get("regionquery", None)
     traitquery = request.GET.get("traitquery", None)
-    mysql_account = freader(BASE_DIR+"/catalog/mysql.txt")
-    mysql_account = [x for y in mysql_account for x in y]
     fields = ['Author', 'Consortium', 'PMID', 'Date', 'Trait', 'EFO', 'Analysis', 'Source', 'Outcome', 'Exposure', 'Covariates', 'Outcome_Unit', 'Exposure_Unit', 'Array', 'Tissue', 'Further_Details', 'N', 'N_Studies', 'Categories', 'Age', 'N_Males', 'N_Females', 'N_EUR', 'N_EAS', 'N_SAS', 'N_AFR', 'N_AMR', 'N_OTH', 'CpG', 'Location', 'Chr', 'Pos', 'Gene', 'Type', 'Beta', 'SE', 'P', 'Details']
-    if cpgquery: 
-        db = MySQLdb.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+    if cpgquery:
+        db = default_db_connection()
         cur = db.cursor()      
         if re.match("^cg[0-9]+", cpgquery):
             cur.execute("SELECT studies.*,results.* FROM results JOIN studies ON results.study_id=studies.study_id WHERE cpg='"+cpgquery+"'")
@@ -297,7 +302,7 @@ def catalog_api(request):
         else:
             return JsonResponse({})
     elif regionquery:
-        db = MySQLdb.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+        db = default_db_connection()
         cur = db.cursor() 
         region = re.split(':|-',regionquery)
         chrom = region[0]
@@ -314,7 +319,7 @@ def catalog_api(request):
         else:
             return JsonResponse({})
     elif genequery:
-        db = MySQLdb.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+        db = default_db_connection()
         cur = db.cursor() 
         genes = cur.execute("SELECT gene,ensembl_id,chr,start,end FROM genes WHERE gene='"+genequery+"'")
         if genes > 0:
@@ -332,7 +337,7 @@ def catalog_api(request):
         else:
             return JsonResponse({})
     elif traitquery:
-        db = MySQLdb.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+        db = default_db_connection()
         cur = db.cursor() 
         efo_terms = efo(traitquery)
         efo_terms = not_efo(efo_terms)

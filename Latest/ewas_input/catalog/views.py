@@ -11,8 +11,17 @@ from .models import Study, Analysis, Participants, Results
 import re, csv, codecs, os, mysql.connector
 from io import TextIOWrapper
 from django.core.files.base import ContentFile
+from django.conf import settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def default_db_connection():
+    dbhost = settings.DATABASES['default']['HOST']
+    dbuser = settings.DATABASES['default']['USER']
+    dbpassword = settings.DATABASES['default']['PASSWORD']
+    dbname = settings.DATABASES['default']['NAME']
+    connection = mysql.connector.connect(host=dbhost,user=dbuser,password=dbpassword,db=dbname)
+    return(connection)
 
 def catalog_home(request):
     return render(request, 'catalog/catalog_home.html', {})
@@ -85,13 +94,11 @@ def catalog_results(request, pk):
 @never_cache
 def catalog_import(request, pk):
     if request.method == "POST":
-        mysql_account = freader(BASE_DIR+"/catalog/mysql.txt")
-        mysql_account = [x for y in mysql_account for x in y]
         form = UploadFileForm(request.POST,request.FILES)
         limit = 10 * 1024 * 1024
         if request.FILES['file'].size < limit:
             if form.is_valid():
-                connection = mysql.connector.connect(host=mysql_account[0], user=mysql_account[1], password=mysql_account[2], db=mysql_account[3])
+                connection = default_db_connection()
                 if request.FILES['file'].name.endswith('.tsv') or request.FILES['file'].name.endswith('.txt'):
                     f = TextIOWrapper(request.FILES['file'].file, encoding='ascii', errors='replace')
                     data = csv.reader(f, delimiter="\t")
