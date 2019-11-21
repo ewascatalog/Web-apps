@@ -93,9 +93,9 @@ def efo_mysql_aries(efo):
     mysql = "SELECT aries_studies.*,aries_results.* FROM aries_studies JOIN aries_results ON aries_studies.study_id=aries_results.study_id WHERE efo LIKE '%"+"%' or efo LIKE '%".join(efo)+"%';"
     return mysql
 
-def efo_mysql_geo(efo):
-    mysql = "SELECT geo_studies.*,geo_results.* FROM geo_studies JOIN geo_results ON geo_studies.study_id=geo_results.study_id WHERE efo LIKE '%"+"%' or efo LIKE '%".join(efo)+"%';"
-    return mysql
+# def efo_mysql_geo(efo):
+#     mysql = "SELECT geo_studies.*,geo_results.* FROM geo_studies JOIN geo_results ON geo_studies.study_id=geo_results.study_id WHERE efo LIKE '%"+"%' or efo LIKE '%".join(efo)+"%';"
+#     return mysql
 
 def tabix_query(chrom, pos):
     results = []
