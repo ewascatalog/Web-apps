@@ -13,7 +13,7 @@ nginx:
   build: ./nginx/
   container_name: dev.ewascatalog_nginx
   ports:
-    - "9980:90"
+    - "8000:90"
   volumes:
     - .:/code
   volumes_from:
