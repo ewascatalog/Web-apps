@@ -1,19 +1,19 @@
 web:
   restart: always
   build: .
-  container_name: dev.ewascataloginput
+  container_name: dev_ewascataloginput
   volumes:
     - .:/code
   links:
     - db:db
-  command: gunicorn ewas.wsgi:application --timeout 300 -w 2 -b :8080
+  command: gunicorn ewas.wsgi:application --timeout 300 -w 2 -b :8000
 
 nginx:
   restart: always
   build: ./nginx/
-  container_name: dev.ewascataloginput_nginx
+  container_name: dev_ewascataloginput_nginx
   ports:
-    - "8000:8000"
+    - "8000:80"
   volumes:
     - .:/code
   volumes_from:
@@ -25,7 +25,7 @@ db:
   env_file:
     - ../../../settings.env
   image: mysql:5.7
-  container_name: dev.ewascataloginput_db
+  container_name: dev_ewascataloginput_db
   # environment:
      # - MYSQL_ROOT_PASSWORD=${INPUT_DATABASE_ROOT_PASSWORD}
      # - MYSQL_USER=${INPUT_DATABASE_USER}
