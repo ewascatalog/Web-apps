@@ -1,7 +1,7 @@
 web:
   restart: always
   build: .
-  container_name: dev.ewascatalog
+  container_name: dev_ewascatalog
   volumes:
     - .:/code
   links:
@@ -11,9 +11,9 @@ web:
 nginx:
   restart: always
   build: ./nginx/
-  container_name: dev.ewascatalog_nginx
+  container_name: dev_ewascatalog_nginx
   ports:
-    - "8000:90"
+    - "9989:90"
   volumes:
     - .:/code
   volumes_from:
@@ -23,9 +23,9 @@ nginx:
 
 db:
   env_file:
-    - ../../../settings.env
+    - .env
   image: mysql:5.7
-  container_name: dev.ewascatalog_db
+  container_name: dev_ewascatalog_db
   environment:
     - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
     - MYSQL_USER=${DATABASE_USER}
