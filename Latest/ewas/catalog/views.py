@@ -207,11 +207,11 @@ def catalog_home(request):
                     efo_query_aries = efo_mysql_aries(efo_terms)
                     cur.execute(efo_query_aries)
                     data_aries = cur.fetchall()
-                    efo_query_geo = efo_mysql_geo(efo_terms)
-                    cur.execute(efo_query_geo)
-                    data_geo = cur.fetchall()
+                    # efo_query_geo = efo_mysql_geo(efo_terms)
+                    # cur.execute(efo_query_geo)
+                    # data_geo = cur.fetchall()
                     data += [x for x in data_aries if float(x[37]) < 1e-7]
-                    data += [x for x in data_geo if float(x[37]) < 1e-7]
+                    # data += [x for x in data_geo if float(x[37]) < 1e-7]
                     data = [x[0:28]+x[29:39] for x in data]
                     data.sort(key=lambda tup: (tup[0], tup[2], float(tup[36])))
                     data_html = tuple(output_table([x[0:1]+x[2:3]+x[8:10]+x[6:7]+x[16:17]+x[28:30]+x[32:33]+x[34:35]+x[36:37] for x in data]))
@@ -230,11 +230,11 @@ def catalog_home(request):
                 efo_query_aries = efo_mysql_aries(efo_terms)
                 cur.execute(efo_query_aries)
                 data_aries = cur.fetchall()
-                efo_query_geo = efo_mysql_geo(efo_terms)
-                cur.execute(efo_query_geo)
-                data_geo = cur.fetchall()
+                # efo_query_geo = efo_mysql_geo(efo_terms)
+                # cur.execute(efo_query_geo)
+                # data_geo = cur.fetchall()
                 data += [x for x in data_aries if float(x[37]) < 1e-7]
-                data += [x for x in data_geo if float(x[37]) < 1e-7]                
+                # data += [x for x in data_geo if float(x[37]) < 1e-7]                
                 data = [x[0:28]+x[29:39] for x in data]
                 data.sort(key=lambda tup: (tup[0], tup[2], float(tup[36])))
                 data_html = tuple(output_table([x[0:1]+x[2:3]+x[8:10]+x[6:7]+x[16:17]+x[28:30]+x[32:33]+x[34:35]+x[36:37] for x in data]))
@@ -349,11 +349,11 @@ def catalog_api(request):
             efo_query_aries = efo_mysql_aries(efo_terms)
             cur.execute(efo_query_aries)
             data_aries = cur.fetchall()
-            efo_query_geo = efo_mysql_geo(efo_terms)
-            cur.execute(efo_query_geo)
-            data_geo = cur.fetchall()
+            # efo_query_geo = efo_mysql_geo(efo_terms)
+            # cur.execute(efo_query_geo)
+            # data_geo = cur.fetchall()
             data += [x for x in data_aries if float(x[37]) < 1e-7]            
-            data += [x for x in data_geo if float(x[37]) < 1e-7]
+            # data += [x for x in data_geo if float(x[37]) < 1e-7]
             data = [x[0:28]+x[29:39] for x in data]
             data.sort(key=lambda tup: (tup[0], tup[2], float(tup[36])))
             return JsonResponse({'results':data, 'fields':fields})
