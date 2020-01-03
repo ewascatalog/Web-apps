@@ -6,7 +6,7 @@ web:
     - .:/code
   links:
     - db:db
-  command: gunicorn ewas.wsgi:application --timeout 600 -w 2 -b :8080
+  command: gunicorn ewas.wsgi:application --timeout 600 -w 2 -b :8000
 
 nginx:
   restart: always
