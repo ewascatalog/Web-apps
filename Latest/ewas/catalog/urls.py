@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from . import views
 
-handler404 = 'views.page_not_found'
-handler500 = 'views.error'
+# handler404 = 'views.page_not_found'
+# handler500 = 'views.error'
 
 urlpatterns = [
     url(r'^$', views.catalog_home, name='catalog_home'),
